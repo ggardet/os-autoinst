@@ -535,6 +535,9 @@ sub start_qemu {
     die "no Qemu/KVM found\n"         unless $qemubin;
     die "MULTINET is not supported with NICTYPE==tap\n" if ($vars->{MULTINET} && $vars->{NICTYPE} eq "tap");
 
+    # Add parameters from QEMU_PREPEND var, if any.
+    $qemubin = $vars->{QEMU_PREPEND} . ' ' . $qemubin if ($vars->{QEMU_PREPEND});
+
     $self->{proc}->qemu_bin($qemubin);
     $self->{proc}->qemu_img_bin($qemuimg);
 
