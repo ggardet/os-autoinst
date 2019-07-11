@@ -326,6 +326,9 @@ sub save_memory_dump {
     bmwqemu::diag("Migrating the machine (Current VM state is $rsp->{return}->{status}).");
     my $was_running = $rsp->{return}->{status} eq 'running';
 
+    # Freeze the VM before migration
+    $self->freeze_vm() if $was_running;
+
     mkpath('ulogs');
     $self->_migrate_to_file(compress_level => $compress_method eq 'internal' ? $compress_level : 0,
         compress_threads => $compress_threads,
