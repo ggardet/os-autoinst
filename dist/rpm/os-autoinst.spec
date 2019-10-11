@@ -35,7 +35,7 @@ Source0:        %{name}-%{version}.tar.xz
 %define test_requires %build_requires %requires perl(Perl::Tidy) perl(Test::Compile) perl(Test::Exception) perl(Test::Output) perl(Test::Fatal) perl(Test::Warnings) perl(Pod::Coverage) perl(Test::Pod) perl(Test::MockModule) perl(Test::MockObject) perl(Devel::Cover) perl(Test::Mock::Time) qemu-tools
 %define devel_requires %test_requires %requires_not_needed_in_tests
 BuildRequires:  %test_requires
-Requires:       %requires
+Requires:       %requires requires_not_needed_in_tests
 Recommends:     tesseract-ocr
 Recommends:     /usr/bin/xkbcomp /usr/bin/Xvnc dumponlyconsole
 Requires(pre):  %{_bindir}/getent
